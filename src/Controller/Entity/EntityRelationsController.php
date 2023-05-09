@@ -69,7 +69,12 @@ final class EntityRelationsController extends ElementRelationsBaseController
      */
     public function operationPerson(Request $request, Response $response, array $args): Response
     {
-        // @TODO
+        return $this->operationRelatedElements(
+            $request,
+            $response,
+            $args,
+            PersonQueryController::getEntityClassName()
+        );
     }
 
     /**
