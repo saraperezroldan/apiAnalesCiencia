@@ -87,7 +87,14 @@ final class EntityRelationsController extends ElementRelationsBaseController
      */
     public function getProducts(Request $request, Response $response, array $args): Response
     {
-        // @TODO
+        /** @var Entity|null $entity */
+        $entity = $this->entityManager
+            ->getRepository(EntityQueryController::getEntityClassName())
+            ->find($args[EntityQueryController::getEntityIdName()]);
+
+        $products = $entity?->getProducts() ?? [];
+
+        return $this->getElements($response, $entity, ProductQueryController::getEntitiesTag(), $products);
     }
 
     /**

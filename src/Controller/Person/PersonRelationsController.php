@@ -106,6 +106,13 @@ final class PersonRelationsController extends ElementRelationsBaseController
      */
     public function operationProduct(Request $request, Response $response, array $args): Response
     {
-        // @TODO
+        /** @var Person|null $person */
+        $person = $this->entityManager
+            ->getRepository(PersonQueryController::getEntityClassName())
+            ->find($args[PersonQueryController::getEntityIdName()]);
+
+        $products = $person?->getProducts() ?? [];
+
+        return $this->getElements($response, $person, ProductQueryController::getEntitiesTag(), $products);
     }
 }
