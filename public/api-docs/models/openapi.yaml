@@ -22,7 +22,12 @@ tags:
   - name: '👥 Users'
     description: User management
   - name: '💡 Products'
-    description: Product management
+#    description: Product management
+#  - name: '💡 Entities'
+#    description: Entity management
+#  - name: '💡 Persons'
+#    description: Person management
+
 
 paths:
   '/access_token':
@@ -279,6 +284,8 @@ paths:
         '404':
           $ref: '#/components/responses/Response_404'
 
+
+
   '/products':
     get:
       tags:
@@ -349,6 +356,7 @@ paths:
           headers:
             Allow:
               $ref: '#/components/headers/Allow'
+
 
   '/products/{productId}':
     parameters:
@@ -431,6 +439,7 @@ paths:
           headers:
             Allow:
               $ref: '#/components/headers/Allow'
+
   '/products/productname/{productname}':
     get:
       tags:
@@ -445,6 +454,8 @@ paths:
           description: Productname exists &lt;Response body is empty&gt;
         '404':
           $ref: '#/components/responses/Response_404'
+
+
   '/products/{productId}/entities':
     get:
       tags:
@@ -476,6 +487,8 @@ paths:
         #   $ref: '#/components/responses/Response_401'
         '404':
           $ref: '#/components/responses/Response_404'
+
+
   '/products/{productId}/persons':
     get:
       tags:
@@ -507,6 +520,8 @@ paths:
         #   $ref: '#/components/responses/Response_401'
         '404':
           $ref: '#/components/responses/Response_404'
+
+
   '/products/{productId}/entities/{operation}/{entityId}':
     put:
       tags:
@@ -535,6 +550,8 @@ paths:
           $ref: '#/components/responses/Response_404'
         '406':
           $ref: '#/components/responses/Response_406'
+
+
   '/products/{productId}/persons/{operation}/{personId}':
     put:
       tags:
@@ -563,6 +580,24 @@ paths:
           $ref: '#/components/responses/Response_404'
         '406':
           $ref: '#/components/responses/Response_406'
+
+
+#  /entities:
+#  '/entities/{entityId}':
+#'/entities/entityname/{entityname}':
+#'/entities/{entityId}/products':
+#  '/entities/{entityId}/persons':
+#'/entities/{entityId}/products'/{operation}/{productId}':
+#'/entities/{entityId}/persons'/{operation}/{personId}':
+
+
+#  /persons:
+#  '/persons/{personId}':
+#'/persons/personname/{personname}':
+#'/persons/{personId}/products':
+#'/persons/{personId}/entities':
+#'/persons/{personId}/products'/{operation}/{productId}':
+#'/persons/{personId}/entities'/{operation}/{entityId}':
 
 components:
   schemas:
@@ -655,6 +690,7 @@ components:
           type: string
           maxLength: 2047
           format: url
+
     Product:
       allOf:
         - $ref: '#/components/schemas/Element'
@@ -680,6 +716,8 @@ components:
           wikiUrl: 'https://wiki07.example.com/'
           persons: [ 3, 17 ]
           entities: [ 2 ]
+
+
     Person:
       allOf:
         - $ref: '#/components/schemas/Element'
@@ -705,6 +743,7 @@ components:
           wikiUrl: 'https://wiki17.example.com/'
           products: [ 1, 7 ]
           entities: [ 2 ]
+
     Entity:
       allOf:
         - $ref: '#/components/schemas/Element'
@@ -730,6 +769,7 @@ components:
           wikiUrl: 'https://wiki02.example.com/'
           products: [ 1, 7 ]
           persons: [ 3, 17 ]
+
     Message:
       type: object
       description: HTTP response message
@@ -961,6 +1001,11 @@ components:
       schema:
         type: string
         pattern: '^[a-zA-Z0-9()áéíóúÁÉÍÓÚñÑ %$\.+-]+$'
+
+
+#    personName
+#    entityName
+
     orderParam:
       name: order
       in: query
@@ -983,6 +1028,8 @@ components:
         enum:
           - ASC
           - DESC
+
+
     ifMatchParam:
       name: If-Match
       in: header
