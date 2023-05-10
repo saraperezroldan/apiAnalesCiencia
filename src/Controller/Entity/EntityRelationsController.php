@@ -54,7 +54,7 @@ final class EntityRelationsController extends ElementRelationsBaseController
 
         $persons = $entity?->getPersons() ?? [];
 
-        return $this->getElements($response, $entity, EntityQueryController::getEntitiesTag(), $persons);
+        return $this->getElements($response, $entity, PersonQueryController::getEntitiesTag(), $persons);
     }
 
     /**
@@ -109,13 +109,11 @@ final class EntityRelationsController extends ElementRelationsBaseController
      */
     public function operationProduct(Request $request, Response $response, array $args): Response
     {
-        /** @var Entity|null $entity */
-        $entity = $this->entityManager
-            ->getRepository(EntityQueryController::getEntityClassName())
-            ->find($args[EntityQueryController::getEntityIdName()]);
-
-        $products = $entity?->getProducts() ?? [];
-
-        return $this->getElements($response, $entity, ProductQueryController::getEntitiesTag(), $products);
+        return $this->operationRelatedElements(
+            $request,
+            $response,
+            $args,
+            ProductQueryController::getEntityClassName()
+        );
     }
 }
