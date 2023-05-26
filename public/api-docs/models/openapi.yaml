@@ -90,6 +90,7 @@ paths:
                     type: string
               example:
                 { "error": "invalid_grant", "error_description": "The user’s password is invalid or expired" }
+
   '/users':
     get:
       tags:
@@ -357,7 +358,6 @@ paths:
             Allow:
               $ref: '#/components/headers/Allow'
 
-
   '/products/{productId}':
     parameters:
       - $ref: '#/components/parameters/productId'
@@ -455,7 +455,6 @@ paths:
         '404':
           $ref: '#/components/responses/Response_404'
 
-
   '/products/{productId}/entities':
     get:
       tags:
@@ -487,7 +486,6 @@ paths:
         #   $ref: '#/components/responses/Response_401'
         '404':
           $ref: '#/components/responses/Response_404'
-
 
   '/products/{productId}/persons':
     get:
@@ -521,7 +519,6 @@ paths:
         '404':
           $ref: '#/components/responses/Response_404'
 
-
   '/products/{productId}/entities/{operation}/{entityId}':
     put:
       tags:
@@ -550,7 +547,6 @@ paths:
           $ref: '#/components/responses/Response_404'
         '406':
           $ref: '#/components/responses/Response_406'
-
 
   '/products/{productId}/persons/{operation}/{personId}':
     put:
@@ -936,14 +932,13 @@ paths:
         - '💡 Persons'
       summary: Provides the list of HTTP supported methods.
       description: Return a `Allow` header with a comma separated list of HTTP supported methods.
-      operationId: cOptionsEntity
+      operationId: OptionsEntity
       responses:
         '204':
           description: '`Allow` header &lt;Response body is empty&gt;'
           headers:
             Allow:
               $ref: '#/components/headers/Allow'
-
 
   '/persons/{personId}':
     parameters:
@@ -1041,7 +1036,6 @@ paths:
           description: Personname exists &lt;Response body is empty&gt;
         '404':
           $ref: '#/components/responses/Response_404'
-
 
   '/persons/{personId}/products':
     get:
@@ -1283,7 +1277,6 @@ components:
           wikiUrl: 'https://wiki07.example.com/'
           persons: [ 3, 17 ]
           entities: [ 2 ]
-
     Person:
       allOf:
         - $ref: '#/components/schemas/Element'
@@ -1309,7 +1302,6 @@ components:
           wikiUrl: 'https://wiki17.example.com/'
           products: [ 1, 7 ]
           entities: [ 2 ]
-
     Entity:
       allOf:
         - $ref: '#/components/schemas/Element'

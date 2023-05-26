@@ -1,0 +1,58 @@
+{
+  "products": [
+    {
+      "product": {
+        "name": "SGML",
+        "birthDate": "1988-02-01",
+        "deathDate": "2250-12-25",
+        "imageUrl": "/img/SGML.PNG",
+        "wikiUrl": "https://es.wikipedia.org/wiki/SGML"
+      }
+    },
+    {
+      "product": {
+        "name": "XML",
+        "birthDate": "1954-09-29",
+        "deathDate": "2250-12-25",
+        "imageUrl": "/img/XML.PNG",
+        "wikiUrl": "https://es.wikipedia.org/wiki/Extensible_Markup_Language"
+      }
+    },
+    {
+      "product": {
+        "name": "HTTP",
+        "birthDate": "1994-10-1",
+        "deathDate": "2250-12-25",
+        "imageUrl": "img/HTTP.PNG",
+        "wikiUrl": "https://es.wikipedia.org/wiki/Extensible_Markup_Language"
+      }
+    },
+    {
+      "product": {
+        "name": "HTML",
+        "birthDate": "1911-06-16",
+        "deathDate": "2250-12-25",
+        "imageUrl": "img/HTML.PNG",
+        "wikiUrl": "https://es.wikipedia.org/wiki/HTML"
+      }
+    },
+    {
+      "product": {
+        "name": "CSS",
+        "birthDate": "1954-09-29",
+        "deathDate": "2250-12-25",
+        "imageUrl": "/img/CSS.PNG",
+        "wikiUrl": "https://es.wikipedia.org/wiki/CSS"
+      }
+    },
+    {
+      "product": {
+        "name": "JavaScript",
+        "birthDate": "1994-10-01",
+        "deathDate": "2250-12-25",
+        "imageUrl": "img/JS.PNG",
+        "wikiUrl": "https://es.wikipedia.org/wiki/JavaScript"
+      }
+    }
+  ]
+}

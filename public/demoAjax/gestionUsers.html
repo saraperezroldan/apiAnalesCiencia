@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>[TDW] ACiencia - Demo AJAX </title>
+    <link href="./css/styles.css" rel="stylesheet"/>
+    <script src="https://unpkg.com/jquery@1"></script>
+</head>
+<body id="body">
+<header>
+    <div class="title">
+        <img src="./img/logo.PNG" alt="ErrorLogo" class="logo" width="50">
+        <h1>ANALES DE LA CIENCIA</h1>
+    </div>
+</header>
+<input type="button" id="btn-Exit" value="Volver">
+<div id="idUser"></div>
+
+<main>
+    <table id="table-gestionUsers">
+        <caption>
+            Gestión de usuarios
+        </caption>
+        <colgroup>
+            <col />
+            <col span="5" />
+        </colgroup>
+            <thead>
+            <tr>
+                <th>Usuario</th>
+                <th>Email</th>
+                <th>Rol</th>
+                <th>Permisos</th>
+                <th>Actividad</th>
+            </tr>
+            </thead>
+            <tbody id="tableUsers">
+            </tbody>
+    </table>
+        <button id ="btn-saveChanges" class = "btn-Beige">Guardar Cambios</button>
+</main>
+<script src="js/loadUsers.js"></script>
+</body>
+</html>

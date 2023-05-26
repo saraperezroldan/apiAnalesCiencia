@@ -3,22 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <title>[TDW] ACiencia - Demo AJAX </title>
+    <link href="./css/styles.css" rel="stylesheet"/>
     <script src="https://unpkg.com/jquery@1"></script>
 </head>
-<body>
+<body id="body">
+    <header>
+        <div class="title">
+            <img src="./img/logo.PNG" alt="ErrorLogo" class="logo" width="50">
+            <h1>ANALES DE LA CIENCIA</h1>
+        </div>
+<!--        autofocus-->
+    </header>
     <form id="form-login" method="post">
         <label for="username">Usuario: </label>
-        <input type="text" id="username" name="username" placeholder="Usuario" autofocus/>
+        <input type="text" id="username" name="username" placeholder="Usuario" />
         <label for="password">Contraseña: </label>
         <input type="password" id="password" name="password" placeholder="Palabra clave"/>
-        <input type="button" id="btn-login" value="Login" />
+        <input type="button" id="btn-login" value="Entrar" />
     </form>
-    <hr/>
-    <code><span id="mytoken">Scopes: (null)</span></code>
-    <hr/>
-    <code><span id="products">Products: (null)</span></code>
-    <hr/>
-    <code><span id="users">Users: (null)</span></code>
+    <hr>
+    <br>
+    <div class= "div-createUser">
+        <h6>Si no tienes cuenta, resgistrate por favor: </h6>
+        <input type="button" id="btn-register" value="Nuevo Usuario" />
+    </div>
 
 <script type="text/javascript">
     let authHeader = null;
@@ -30,42 +38,28 @@
             ).success(function (data, textStatus, request) {
                 // => show scopes, users, products, ...
                 authHeader = request.getResponseHeader('Authorization');
-                showData(authHeader);
-                console.log(data)
-            }).fail(function (xhr) {
-                if (xhr.responseJSON && xhr.responseJSON.error_description) {
-                message = xhr.responseJSON.error_description;
+                sessionStorage.setItem('Authorization', authHeader);
+                let rol = showToken(authHeader);
+                if(rol[1] === "writer"){
+                    $(window).attr('location','pagWriter.html')
                 }
-                alert("Incorrecto :( \n" + message)
+                else {
+                    $(window).attr('location','pagReader.html')
+                }
+
+            }).fail(function (xhr) {
+                let message = "";
+                if (xhr.responseJSON && xhr.responseJSON.message) {
+                message = xhr.responseJSON.message;
+                }
+                alert("Incorrecto : " + message)
             });
     });
-
-    function showData(authHeader) {
-        showToken(authHeader);
-        showProducts(authHeader);
-        showUsers(authHeader);
-    }
 
     function showToken(authHeader) {
         let token = authHeader.split(' ')[1];   // Elimina 'Bearer '
         let myData = JSON.parse(atob(token.split('.')[1]));
-        console.log("JWT: " + token);
-        $('#mytoken').html(
-            "User: " + JSON.stringify(myData.sub) +
-            " - JWT Scopes: " + JSON.stringify(myData.scopes)
-        );
-    }
-
-    function showProducts(authHeader) {
-        $.ajax({
-            type: "GET",
-            url: '/api/v1/products',
-            headers: {"Authorization": authHeader},
-            // dataType: 'json',
-            success: function (data) {
-                $('#products').html(JSON.stringify(data));
-            }
-        })
+        return myData.scopes;
     }
 
     function showUsers(authHeader) {
@@ -79,6 +73,9 @@
             }
         })
     }
+    $("#btn-register").click(function(){
+        $(window).attr('location','newUser.html')
+    });
 </script>
 </body>
 </html>

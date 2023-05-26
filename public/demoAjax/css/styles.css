@@ -1,0 +1,204 @@
+/**{*/
+/*    border: solid red;*/
+/* }*/
+
+body {
+    background-color: rgb(201, 205, 205);
+    font-family: 'Lucida Sans', fantasy;
+    margin: 0;
+}
+
+.title {
+    display: flex;
+    color:rgb(235, 245, 245);
+    border: black solid;
+    background-color: darkcyan;
+    justify-content:center;
+}
+
+.logo {
+    width: 4.5%;
+    height: 8%;
+    display:flex;
+    position: relative;
+    justify-content: left;
+    top: 15px;
+    padding-right: 10px;
+}
+
+#form-login {
+    padding: 10px;
+    margin: 10px;
+    font-size: medium;
+}
+
+#btn-register{
+    position: absolute;
+    margin-left: 180px;
+    padding: 10px;
+    font-family: 'Lucida Sans', fantasy;
+}
+
+#idUser{
+    margin-left: 20px;
+}
+
+#btn-Exit {
+    margin-top: 15px;
+    margin-left: 30px;
+    font-size:small;
+    padding: 7px;
+    font-family: 'Lucida Sans', fantasy;
+}
+
+ .btn-Generic{
+    margin-top: 15px;
+    font-size:small;
+    padding: 7px;
+    font-family: 'Lucida Sans', fantasy;
+    margin-left: 20px;
+}
+
+div.tableLeft {
+    float: left;
+    margin-top: 2%;
+    margin-left: 15%;
+}
+
+div.tableCenter {
+    float: left;
+    margin-top: 2%;
+    margin-left: 3%;
+}
+
+div.tableRight {
+    float: left;
+    margin-top: 2%;
+    margin-left: 3%;
+}
+
+img.dimImg {
+    max-height: 42px;
+    max-width: 42px;
+}
+
+td {
+    font-size: small;
+    text-align: center;
+}
+
+.formElem {
+    padding: 25px;
+    margin-left: 300px;
+    margin-top: 0px;
+    background-color: rgb(188, 215, 215);
+    border: solid black;
+    width: 300px;
+    justify-content:center;
+}
+
+.div-createUser{
+    padding: 15px;
+    margin-left: 100px;
+    font-size: 20px;
+    background-color: rgb(188, 215, 215);
+    border: solid black;
+    width: 300px;
+    height: 120px;
+}
+#table-gestionUsers{
+    border: solid black;
+    padding: 10px;
+    margin-left: 100px;
+}
+caption{
+    border: solid black;
+    font-size: larger;
+    padding: 5px;
+    margin-top: 15px;
+    background: dimgrey;
+    color: snow;
+}
+
+th{
+    padding-left: 50px;
+    padding-right: 50px;
+    background: #fafafa;
+}
+h3 {
+    font-size: large;
+    text-align: center;
+    margin-top: 2px;
+}
+
+.btnElem {
+    font-style: italic;
+    //font-weight: 100px;
+    background-color: beige;
+    position: relative;
+    margin-left: 20px;
+    margin-top: 15px;
+    padding: 7px;
+
+}
+
+.btnSave {
+    font-style: italic;
+    margin-left:230px;
+    padding: 7px;
+    background-color: beige;
+}
+
+.btn-Beige {
+    font-style: italic;
+    margin-left:510px;
+    margin-top: 10px;
+    padding: 7px;
+    background-color: beige;
+
+}
+
+nav {
+    margin-top: 15px;
+}
+
+.wiki{
+    width: 700px;
+    height: 420px;
+    position: absolute;
+    top:140px;
+    left: 500px;
+    margin-bottom: 15px;
+}
+
+h2{
+    margin-left: 60px;
+    margin-top: 0px;
+    position: relative;
+    top: 40px;
+}
+
+.med {
+    width: 180px;
+    padding: 20px;
+    margin-left: 50px;
+    margin-bottom:60px;
+}
+
+.sm {
+    width: 25px;
+    padding: 5px;
+    //display: flexbox;
+    justify-content: space-between;
+}
+
+.sm1 {
+    width: 37px;
+    padding: 5px;
+    //display: flexbox;
+    justify-content: space-between;
+}
+
+p{
+    margin-left: 80px;
+}

@@ -1,0 +1,31 @@
+{
+"entities": [
+    {
+      "entity": {
+        "name": "IBM",
+        "birthDate": "1911-06-16",
+        "deathDate": "2023-05-21",
+        "imageUrl": "/img/IBM.PNG",
+        "wikiUrl": "https://es.wikipedia.org/wiki/IBM"
+      }
+    },
+    {
+      "entity": {
+        "name": "CERN",
+        "birthDate": "1954-09-29",
+        "deathDate": "2023-05-21",
+        "imageUrl": "/img/CERN.PNG",
+        "wikiUrl": "https://es.wikipedia.org/wiki/Organización_Europea_para_la_Investigación_Nuclear"
+      }
+    },
+    {
+      "entity": {
+        "name": "W3C",
+        "birthDate": "1994-10-1",
+        "deathDate": "2023-05-21",
+        "imageUrl": "/img/W3C.PNG",
+        "wikiUrl": "https://es.wikipedia.org/wiki/World_Wide_Web_Consortium"
+      }
+    }
+  ]
+}

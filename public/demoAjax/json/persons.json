@@ -1,0 +1,23 @@
+{
+  "persons": [
+    {
+      "person": {
+        "name": "Tim Berners-Lee",
+        "birthDate": "1955-06-8",
+        "deathDate": "2023-05-21",
+        "imageUrl": "/img/TimBerners.PNG",
+        "wikiUrl": "https://es.wikipedia.org/wiki/Tim_Berners-Lee"
+      }
+    },
+    {
+      "person": {
+        "name": "Vannevar-Bush",
+        "birthDate": "1890-03-11",
+        "deathDate": "2023-05-21",
+        "imageUrl": "/img/VannevarBush.PNG",
+        "wikiUrl": "https://es.wikipedia.org/wiki/Vannevar_Bush"
+      }
+    }
+  ]
+}
+
