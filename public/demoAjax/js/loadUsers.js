@@ -32,21 +32,16 @@ function showUsuarios(authHeader) {
             let contenedor= document.querySelector('#tableUsers');
             contenedor.innerHTML = '';
             $.each(data.users, function(i, item) {
+                console.log(data.users)
                 contenedor.innerHTML+= `
                     <tr id='${item.user.id}'>
                         <td>${item.user.username}</td>
                         <td>${item.user.email}</td>
                         <td>${item.user.role}</td>
-                        <td>
-                            <input type="checkbox" value="Reader" />Reader
-                            <input type="checkbox" value="Writter" />Writer
-                        </td>
-                        <td>
-                            <input type="radio" value="Activar" checked />Activo
-                            <input type="radio" value="Desactivar"  /> Inactivo
-                        </td>
-                        <td><button id="btnDelete" onclick="eliminarUser('${item.user.id}')">Delete</button></td>
-                        <td><button id="btnEdit" onclick="editarUser('${item.user.id}',)">Edit</button></td>       
+                        <td>${item.user.role}</td>
+
+                        <td><button id="btnEdit" onclick="editarUser('${item.user.id}',)">Edit</button></td> 
+                        <td><button id="btnDelete" onclick="eliminarUser('${item.user.id}')">Delete</button></td>      
                     </tr>       
             `
             });
@@ -56,20 +51,20 @@ function showUsuarios(authHeader) {
 
 function editarUser(id) {
     sessionStorage.setItem('idUser',id);
-    $(window).attr('location', 'updateUser.html')
+    $(window).attr('location', 'editUser.html')
 }
 
 function eliminarUser(id) {
     authHeader= sessionStorage.getItem('Authorization')
-    let confirma= confirm("Estas seguro de Eliminar al usuario");
-    if(confirma){
+    let confirmar = confirm("Estas seguro de eliminar este usuario?");
+    if(confirmar){
         $.ajax({
-            type: "delete",
-            url:'/api/v1/users/'+id,
+            type: "DELETE",
+            url:'/api/v1/users/'+ id,
             headers: {"Authorization": authHeader},
             dataType: 'json',
             success: function () {
-                $(window).attr('location', 'manejarUsuarios.html')
+                $(window).attr('location', 'gestionUsers.html')
             },
             error: function (xhr) {
                 let message = "";

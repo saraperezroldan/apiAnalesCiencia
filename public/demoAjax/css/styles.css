@@ -93,8 +93,26 @@ td {
     margin-top: 0px;
     background-color: rgb(188, 215, 215);
     border: solid black;
-    width: 300px;
+    width: 320px;
     justify-content:center;
+}
+
+.btn-Elem {
+    font-style: italic;
+    position: relative;
+    margin-left: 20px;
+    margin-top: 15px;
+    padding: 7px;
+    background-color: navajowhite;
+}
+
+.btn-Elem2 {
+    font-style: italic;
+    position: relative;
+    margin-top: 15px;
+    margin-left: 460px;
+    padding: 7px;
+    background-color: navajowhite;
 }
 
 .div-createUser{
@@ -131,22 +149,20 @@ h3 {
     margin-top: 2px;
 }
 
-.btnElem {
-    font-style: italic;
-    //font-weight: 100px;
+
+
+.btn-ED{
+    padding: 8px;
     background-color: beige;
-    position: relative;
-    margin-left: 20px;
-    margin-top: 15px;
-    padding: 7px;
 
 }
 
-.btnSave {
+.btn-Save {
     font-style: italic;
     margin-left:230px;
     padding: 7px;
     background-color: beige;
+
 }
 
 .btn-Beige {
@@ -154,7 +170,6 @@ h3 {
     margin-left:510px;
     margin-top: 10px;
     padding: 7px;
-    background-color: beige;
 
 }
 

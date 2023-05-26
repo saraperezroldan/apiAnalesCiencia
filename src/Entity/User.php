@@ -78,7 +78,7 @@ class User implements JsonSerializable, Stringable
         string $username = '',
         string $email = '',
         string $password = '',
-        Role|string $role = Role::READER
+        Role|string $role = Role::READER,
     ) {
         $this->id       = 0;
         $this->username = $username;

@@ -62,17 +62,6 @@
         return myData.scopes;
     }
 
-    function showUsers(authHeader) {
-        $.ajax({
-            type: "GET",
-            url: '/api/v1/users',
-            headers: {"Authorization": authHeader},
-            // dataType: 'json',
-            success: function (data) {
-                $('#users').html(JSON.stringify(data));
-            }
-        })
-    }
     $("#btn-register").click(function(){
         $(window).attr('location','newUser.html')
     });

@@ -9,7 +9,7 @@ window.addEventListener('load',userForm = () => {
        		<pre>Correo eléctronico: <input id='email' type="email"></pre>
       		<pre>Fecha nacimiento: <input id='dateBirth' type="date"></pre>
       		
-      		<input type="button" id="btn-newUser" value="Crear cuenta" />
+      		<input type="button" id="btn-newUser" class = "btn-Save" value="Crear cuenta" />
      `
     });
 

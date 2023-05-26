@@ -18,10 +18,11 @@ try {
     $num = random_int(0, 100000);
     $role = ($num % 2) ? Role::READER : Role::WRITER;
     $nombre = 'user-' . $num;
+    $birthDate = '';
 
     /** @var EntityManager $entityManager */
     $entityManager = DoctrineConnector::getEntityManager();
-    $user = new User($nombre, $nombre . '@example.com', $nombre, $role);
+    $user = new User($nombre, $nombre . '@example.com', $nombre, $role, $birthDate);
 
     $entityManager->persist($user);
     $entityManager->flush();
