@@ -17,7 +17,7 @@ body {
 }
 
 .logo {
-    width: 4.5%;
+    width: 3.5%;
     height: 8%;
     display:flex;
     position: relative;
@@ -52,11 +52,12 @@ body {
 }
 
  .btn-Generic{
-    margin-top: 15px;
-    font-size:small;
-    padding: 7px;
-    font-family: 'Lucida Sans', fantasy;
-    margin-left: 20px;
+     margin-top: 15px;
+     font-size:13px;
+     padding: 7px;
+     font-family: 'Lucida Sans', fantasy;
+     margin-left: 20px;
+     background: rgba(139,158,202,0.69);
 }
 
 div.tableLeft {
@@ -122,7 +123,7 @@ td {
     background-color: rgb(188, 215, 215);
     border: solid black;
     width: 300px;
-    height: 120px;
+    height: 140px;
 }
 #table-gestionUsers{
     border: solid black;

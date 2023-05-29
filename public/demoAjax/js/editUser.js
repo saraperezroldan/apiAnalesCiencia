@@ -1,7 +1,7 @@
 let etag = null;
 $(document).ready(function (){
     let authHeader= sessionStorage.getItem('Authorization');
-    let id= sessionStorage.getItem('idUser');
+    let id = sessionStorage.getItem('idUser');
 
     $.ajax({
         type: "GET",
@@ -9,27 +9,25 @@ $(document).ready(function (){
         headers: {"Authorization": authHeader},
         dataType: 'json',
         success: function (data)  {
+            let editUser = document.querySelector('#form-EditUser');
             let user = data.user;
-            let editUser = document.querySelector('#formEdit-User');
             editUser.innerHTML = '';
-
             editUser.innerHTML += `
-            <h3>Editar Usuario</h3>
-            <label for="idEdit">Id: </label>
-            <input id='idEdit' type = "text" value="`+ user.id +`" disabled> <br><br>
-            <label for="username">Usuario: </label>
-            <input type="text" id="username" name="username" value="`+ user.username +`" required/><br><br>
-            <label for="email">Email: </label>
-            <input type="email" id="useremail" name="email" value="`+ user.email +`"/><br><br>
-            <label for="birthDate">Fecha de cumpleaños: </label>
-            <input type="date" id="birthDate" name="email" value=""/><br><br>
-            <label for="rol">Permisos: </label>
+                <h3>Editar Usuario: `+ user.username +`</h3>
+                <label for="idEdit">Id: </label>
+                <input id='idEdit' type = "text" value="`+ user.id +`" disabled> <br><br>
+                <label for="userName">Usuario: </label>
+                <input type="text" id="userName" value="`+ user.username +`" required/><br><br>
+                <label for="userEmail">Email: </label>
+                <input type="email" id="userEmail" name="email" value="`+ user.email +`"/><br><br>
+                <label for="birthDate">Fecha de cumpleaños: </label>
+                <input type="date" id="birthDate"  value=""/><br><br>
+                <label for="role">Permisos: </label>
             `;
-
-            if(user.role.toString() === 'WRITTER'){
+            if(user.role === 'WRITER'){
                 editUser.innerHTML += ` <select id ="role" name="role" >
                                             <option selected> Writer </option>
-                                            <option > Reader </option> 
+                                            <option > Reader </option>
                                         </select>`;
             }
             else{
@@ -38,17 +36,27 @@ $(document).ready(function (){
                                             <option selected> Reader </option>
                                           </select>`;
             }
-
+            if(user.role.length > 0){
+                editUser.innerHTML += `<br><br>
+                                       <label for= "activo" >Activo:</label>
+                                        <input type="radio" id="activo" name="estado" value="activar" checked/> 
+                                        <label for= "inactivo" >Inactivo:</label>
+                                        <input type="radio" id="inactivo" name="estado" value="desactivar"/>                   
+                `
+            }
+            else{
+                editUser.innerHTML += `<br><br>
+                                       <label for= "activo" >Activo:</label>
+                                        <input type="radio" id="activo" name="estado" value="activar"/> 
+                                        <label for= "inactivo" >Inactivo:</label>
+                                        <input type="radio" id="inactivo" name="estado" value="desactivar" checked/> 
+            `
+            }
             editUser.innerHTML += `
-                <br><br> 
-                <label for= "" >Estado:</label>
-                <input type="radio" name="estado" value="activar"/>Activo
-                <input type="radio" name="estado" value="desactivar" /> Inactivo
                 <br>
                 <br>
-                <hr>      
+                <hr>
                 <input type="button" id="btn-upUser" class="btn-Elem" value="Guardar cambios"/>
-                  
             `
             document.querySelector('#btn-upUser').addEventListener('click',updateUser);
         },
@@ -67,11 +75,10 @@ $(document).ready(function (){
 
 })
 
-
 function updateUser(){
 
     let authHeader= sessionStorage.getItem('Authorization');
-    let id= sessionStorage.getItem('idUser');
+
 
     let confirmar = confirm("Estas seguro de Modificar");
     if(confirmar){
@@ -82,7 +89,7 @@ function updateUser(){
             dataType: 'json',
             data:  $("#form-upUser").serialize() ,
             success: function (data) {
-                $(window).attr('location', 'manejarUsuarios.html')
+                $(window).attr('location', 'gestionUsers.html')
             },
             error: function (xhr) {
                 let message = "";

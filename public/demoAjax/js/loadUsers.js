@@ -27,7 +27,7 @@ function showUsuarios(authHeader) {
         type: "GET",
         url: '/api/v1/users',
         headers: {"Authorization": authHeader},
-        // dataType: 'json',
+        dataType: 'json',
         success: function (data) {
             let contenedor= document.querySelector('#tableUsers');
             contenedor.innerHTML = '';
@@ -43,7 +43,7 @@ function showUsuarios(authHeader) {
                         <td><button id="btnEdit" onclick="editarUser('${item.user.id}',)">Edit</button></td> 
                         <td><button id="btnDelete" onclick="eliminarUser('${item.user.id}')">Delete</button></td>      
                     </tr>       
-            `
+                `
             });
         }
     })
@@ -75,7 +75,6 @@ function eliminarUser(id) {
             }
         })
     }
-
 }
 
 function showToken(authHeader) {

@@ -4,6 +4,7 @@ $(document).ready(function (){
     let authHeader= sessionStorage.getItem('Authorization');
     let id = sessionStorage.getItem('idElemento');
     let typeElem = sessionStorage.getItem('tipoE');
+    let edit = null;
 
     $.ajax({
         type: "GET",
@@ -11,9 +12,8 @@ $(document).ready(function (){
         headers: {"Authorization": authHeader},
         dataType: 'json',
         success: function (data)  {
-            let formEdit= document.querySelector('#formEdit');
+            let formEdit = document.querySelector('#formEdit');
             formEdit.innerHTML = '';
-            let edit = null;
             switch (typeElem) {
                 case 'Product':
                     edit = data.product;
@@ -37,17 +37,15 @@ $(document).ready(function (){
                 <br>
             `
             if (typeElem === 'Entity'){
-            formEdit.innerHTML += `<h5>Personajes<h5>`
+                formEdit.innerHTML += `<h5>Personajes<h5>`
 
             } else if (typeElem === 'Product'){
-
-            formEdit.innerHTML += `<h5>Entidades<h5>`
-
-            }
+                formEdit.innerHTML += `<h5>Entidades<h5>`
+                }
             formEdit.innerHTML += `
                 <input id="btn-Edit" class= "btn-Save" type="button" value="Actualizar">
                 `
-            document.querySelector('#btn-Edit').addEventListener('click', saveEdit);
+            document.querySelector('#btn-Edit').addEventListener('click', saveEditElem);
         },
         complete: function(xhr){
             etag = xhr.getResponseHeader("Etag")
@@ -60,8 +58,68 @@ $(document).ready(function (){
             alert("Error:( \n" + message)
         }
     })
-
 })
+
+function saveEditElem(){
+
+    let authHeader = sessionStorage.getItem('Authorization');
+    let id = sessionStorage.getItem('idElemento');
+    let typeElem = sessionStorage.getItem('tipoE');
+
+    let confirmar = confirm("Estas seguro de modificar el elemento?");
+    if(confirmar){
+        $.ajax({
+            type: "PUT",
+            url: pathAPI(typeElem)+'/'+id,
+            headers: {"Authorization": authHeader,"If-Match": etag},
+            dataType: 'json',
+            //data:  $("#formEdit").serialize() ,
+            data:{
+                name: $("#nameElem").val(),
+                birthDate: $("#dateBirth").val(),
+                deathDate: $("#dateDeadth").val(),
+                imageUrl: $("#urlImg").val(),
+                wikiUrl:$("#urlWiki").val(),
+            },
+            success: function (data) {
+                alert("Se han guardado los cambios correctamente");
+                $(window).attr('location', 'pagWriter.html')
+            },
+            error: function (xhr) {
+                let message = "";
+                if (xhr.responseJSON && xhr.responseJSON.message) {
+                    message = xhr.responseJSON.message;
+                }
+                alert("Error:( \n" + message)
+            }
+        })
+    }
+}
+
+function savePersonChanges(id){
+
+    let urlParams = new URLSearchParams(window.location.search);
+    let authHeader = urlParams.get('key');
+
+    $.ajax({
+        type: "PUT",
+        url: '/api/v1/persons/' + id,
+        headers:{"Authorization" : authHeader, "If-Match": localStorage.getItem("eTag")},
+        dataType: 'json',
+        data: {
+            name: $("#edit-person-name").val(),
+            birthDate: $("#edit-person-birthDate").val(),
+            deathDate: $("#edit-person-deathDate").val(),
+            imageUrl: $("#edit-person-imageUrl").val(),
+            wikiUrl:$("#edit-person-wikiUrl").val(),
+        },
+        success:function(data){
+            console.log(data);
+            window.close();
+            alert("Se han guardado los cambios correctamente");
+        }
+    })
+}
 
 function pathAPI(type){
     let rutaApi = '';
@@ -77,34 +135,6 @@ function pathAPI(type){
             break;
     }
     return rutaApi
-}
-
-function saveEdit(){
-
-    let authHeader = sessionStorage.getItem('Authorization');
-    let id = sessionStorage.getItem('idElemento');
-    let typeElem = sessionStorage.getItem('tipoE');
-
-    let confirmar = confirm("Estas seguro de modificar el elemento?");
-    if(confirmar){
-        $.ajax({
-            type: "PUT",
-            url: pathAPI(typeElem)+'/'+id,
-            headers: {"Authorization": authHeader,"If-Match": etag},
-            dataType: 'json',
-            data:  $("#formEdit").serialize() ,
-            success: function () {
-                $(window).attr('location', 'pagWriter.html')
-            },
-            error: function (xhr) {
-                let message = "";
-                if (xhr.responseJSON && xhr.responseJSON.message) {
-                    message = xhr.responseJSON.message;
-                }
-                alert("Error:( \n" + message)
-            }
-        })
-    }
 }
 
 $("#btn-Back").click(function(){

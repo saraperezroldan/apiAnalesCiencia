@@ -140,7 +140,7 @@ $("#btn-Users").click(function(){
 })
 
 $("#btn-Profile").click(function(){
-    $(window).attr('location','editUser.html')
+    $(window).attr('location','editPerfil.html')
 })
 
 
