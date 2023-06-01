@@ -58,8 +58,8 @@ return function (App $app) {
     $app->delete(
         $_ENV['RUTA_API'] . UpdateCommand::PATH_USERS . $REGEX_USER_ID,
         DeleteCommand::class
-    )->setName('tdw_users_delete')
-        ->add(JwtMiddleware::class);
+    )->setName('tdw_users_delete');
+        //->add(JwtMiddleware::class);
 
     // POST: Creates a new user
     $app->post(

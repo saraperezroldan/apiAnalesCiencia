@@ -45,11 +45,6 @@
                             $(window).attr('location','pagReader.html')
                         }
                 }
-                //Agregar una acción que desees ejecutar después de que la solicitud se complete
-                ).complete(function (){
-                    $('#username').val = '';
-                    $('#password').val = '';
-                }
                 ).fail(function (xhr) {
                     let message = "";
                     if (xhr.responseJSON && xhr.responseJSON.message) {
@@ -63,6 +58,7 @@
             let token = authHeader.split(' ')[1];   // Elimina 'Bearer '
             let myData = JSON.parse(atob(token.split('.')[1]));
             return myData.scopes;
+
         }
 
         $("#btn-register").click(function(){

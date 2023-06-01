@@ -2,10 +2,9 @@ let etag = null;
 $(document).ready(function (){
     let authHeader= sessionStorage.getItem('Authorization');
     let id = sessionStorage.getItem('idUser');
-
     $.ajax({
         type: "GET",
-        url: '/api/v1/users/'+id,
+        url: '/api/v1/users/'+ id,
         headers: {"Authorization": authHeader},
         dataType: 'json',
         success: function (data)  {
@@ -61,8 +60,7 @@ $(document).ready(function (){
             document.querySelector('#btn-upUser').addEventListener('click',updateUser);
         },
         complete: function(xhr){
-            etag=xhr.getResponseHeader("Etag")
-
+            etag =xhr.getResponseHeader("Etag")
         },
         error: function (xhr) {
             let message = "";
@@ -76,18 +74,17 @@ $(document).ready(function (){
 })
 
 function updateUser(){
-
     let authHeader= sessionStorage.getItem('Authorization');
+    let id = sessionStorage.getItem('idUser');
 
-
-    let confirmar = confirm("Estas seguro de Modificar");
-    if(confirmar){
+    let msg = confirm("Estas seguro de Modificar");
+    if(msg){
         $.ajax({
             type: "PUT",
-            url: '/api/v1/users/'+id,
+            url: '/api/v1/users/'+ id,
             headers: {"Authorization": authHeader,"If-Match": etag},
             dataType: 'json',
-            data:  $("#form-upUser").serialize() ,
+            data:  $("#form-EditUser").serialize() ,
             success: function (data) {
                 $(window).attr('location', 'gestionUsers.html')
             },

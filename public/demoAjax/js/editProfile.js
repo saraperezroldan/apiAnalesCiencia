@@ -5,8 +5,8 @@ let id = showToken(authHeader).uid;
 
 $(document).ready(function (){
     $.ajax({
-        type: "get",
-        url: '/api/v1/users/'+id,
+        type: "GET",
+        url: '/api/v1/users/'+ id,
         headers: {"Authorization": authHeader},
         dataType: 'json',
         success: function (data)  {
@@ -26,6 +26,7 @@ $(document).ready(function (){
                 <label for="rol">Permisos: </label>
                 <input id="rol" type = "text" name ="role" value="`+user.role +`" >
                 <hr/> 
+                
                 <input type="button" id="btn-Save-Profile" class = "btn-Elem" value="Actualizar datos"/>
                 `
             document.querySelector('#btn-Save-Profile').addEventListener('click',updateProfile);
@@ -54,13 +55,13 @@ function updateProfile(){
             data: {
                 name: $("#userName").val(),
                 email: $("#userEmail").val(),
+                fecha_nacimiento:$("#birthDate").val(),
             },
             success: function (data) {
                 alert("Se han guardado los cambios correctamente 😊");
                 window.history.back();
             },
             error: function (xhr) {
-                console.log(xhr.getAllResponseHeaders())
                 let message = "";
                 if (xhr.responseJSON && xhr.responseJSON.message) {
                     message = xhr.responseJSON.message;

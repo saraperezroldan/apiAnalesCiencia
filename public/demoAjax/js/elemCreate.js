@@ -2,7 +2,6 @@
 let typeElem = sessionStorage.getItem('tipoElem');
 let authHeader = sessionStorage.getItem('Authorization');
 
-//window.addEventListener('load',loadForm = () =>{
 $(document).ready(function (){
     let form = document.getElementById('formCreate');
 
@@ -16,12 +15,50 @@ $(document).ready(function (){
       		<pre>Wikipedia: <input id='urlWiki' type = "text"></pre>
      `
     if (typeElem === 'Entity'){
-        form.innerHTML += `<h5>Personajes<h5>`
-
+        $.ajax({
+            type: "GET",
+            url: '/api/v1/persons',
+            headers: {"Authorization": authHeader},
+            dataType: 'json',
+            success: function (data) {
+                form.innerHTML += `<h5>Personajes<h5>`
+                $.each(data.persons, function (i, item) {
+                    form.innerHTML += `
+                        <input type="checkbox" class = "checkbox"/>${item.person.name}<br>
+                        `
+                });
+            }
+        });
     } else if(typeElem === 'Product'){
-        form.innerHTML += `<h5>Personajes<h5>`
+        $.ajax({
+            type: "GET",
+            url: '/api/v1/persons',
+            headers: {"Authorization": authHeader},
+            dataType: 'json',
+            success: function (data) {
+                form.innerHTML += `<h5>Personajes<h5>`
+                $.each(data.persons, function (i, item) {
+                    form.innerHTML += `
+                        <input type="checkbox" class = "checkbox"/>${item.person.name}<br>
+                        `
+                });
+            }
+        });
 
-        form.innerHTML += `<h5>Entidades<h5>`
+        $.ajax({
+            type: "GET",
+            url: '/api/v1/entities',
+            headers: {"Authorization": authHeader},
+            dataType: 'json',
+            success: function (data) {
+                form.innerHTML += `<h5>Entidades<h5>`
+                $.each(data.entities, function (i, item) {
+                    form.innerHTML += `
+                        <input type="checkbox" class = "checkbox"/>${item.entity.name}<br>
+                        `
+                });
+            }
+        });
     }
     form.innerHTML += `
      <input id="btn-Save-Create" class= "btn-Save" type="button"  value="Guardar">
@@ -33,8 +70,6 @@ $("#btn-Exit").click(function(){
     $(window).attr('location','pagWriter.html')
 })
 
-
-//$("#btn-Save-Create").click(function() {
 function createElem(){
     name = $('#nameElem').val();
     if(name === ''){
@@ -45,7 +80,6 @@ function createElem(){
             url: pathAPI(typeElem),
             headers: {"Authorization": authHeader},
             dataType: 'json',
-            //data: $("#formletter").serialize(),
             data:{
                 name: $("#nameElem").val(),
                 birthDate: $("#dateBirth").val(),

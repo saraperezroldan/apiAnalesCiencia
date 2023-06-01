@@ -25,8 +25,7 @@ function infoUser(){
 
 function showToken(authHeader) {
     let token = authHeader.split(' ')[1];   // Elimina 'Bearer '
-    let myData = JSON.parse(atob(token.split('.')[1]));
-    return myData;
+    return JSON.parse(atob(token.split('.')[1]));
 }
 
 function showProducts(authHeader) {
@@ -36,7 +35,6 @@ function showProducts(authHeader) {
         headers: {"Authorization": authHeader},
         dataType: 'json',
         success: function (data) {
-            //$('#tableProduct').html(JSON.stringify(data));
             let rol = showToken(authHeader).scopes;
             let container = document.querySelector('#tableProduct');
             container.innerHTML = '';
@@ -46,8 +44,7 @@ function showProducts(authHeader) {
                         <tr id=${item.product.id}>
                             <td><img src=${item.product.imageUrl} class="dimImg" alt="Img-product"><br> ${item.product.name}</td>
                             <td><button id="btnEdit" class = "btn-ED" onclick="editElem('${item.product.id}','Product')">Editar</button></td>   
-                            <td><button id="btnDelete" class = "btn-ED" onclick="deleteElem('${item.product.id}','Product')">Borrar</button></td>
-                                
+                            <td><button id="btnDelete" class = "btn-ED" onclick="deleteElem('${item.product.id}','Product')">Borrar</button></td>      
                         </tr>       
                         `
                 } else {
@@ -105,7 +102,7 @@ function showPersons(authHeader) {
             container.innerHTML = '';
             $.each(data.persons, function (i, item) {
                 if (rol[0] === 'reader' && rol[1] === 'writer') {
-                    console.log(data.persons)
+                    //console.log(data.persons)
                     container.innerHTML += `
                         <tr id=${item.person.id}>
                             <td><img src= ${item.person.imageUrl} class="dimImg" alt="Img-person"><br>  ${item.person.name}</td>

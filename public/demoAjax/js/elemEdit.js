@@ -37,10 +37,72 @@ $(document).ready(function (){
                 <br>
             `
             if (typeElem === 'Entity'){
-                formEdit.innerHTML += `<h5>Personajes<h5>`
+                console.log(edit)
+                $.ajax({
+                    type: "GET",
+                    url: '/api/v1/persons',
+                    headers: {"Authorization": authHeader},
+                    dataType: 'json',
+                    success: function (data) {
+                        formEdit.innerHTML += `<h5>Personajes<h5>`
+                        $.each(data.persons, function (i, item) {
+                            if(data.persons[i].id !== 0){
+                                formEdit.innerHTML += `
+                                <input type="checkbox" class = "checkbox" checked/>${item.person.name}<br>
+                                `
+                            }
+                            else{
+                                formEdit.innerHTML += `
+                                <input type="checkbox" class = "checkbox"/>${item.person.name}<br>
+                            `
+                            }
+                        })
+                    }
+                })
 
             } else if (typeElem === 'Product'){
-                formEdit.innerHTML += `<h5>Entidades<h5>`
+                $.ajax({
+                    type: "GET",
+                    url: '/api/v1/persons',
+                    headers: {"Authorization": authHeader},
+                    dataType: 'json',
+                    success: function (data) {
+                        formEdit.innerHTML += `<h5>Personajes<h5>`
+                        $.each(data.persons, function (i, item) {
+                            if(data.persons[i].id !== 0){
+                                formEdit.innerHTML += `
+                                <input type="checkbox" class = "checkbox" checked/>${item.person.name}<br>
+                                `
+                            }
+                            else{
+                                formEdit.innerHTML += `
+                                <input type="checkbox" class = "checkbox"/>${item.person.name}<br>
+                            `
+                            }
+                        })
+                    }
+                })
+                $.ajax({
+                    type: "GET",
+                    url: '/api/v1/entities',
+                    headers: {"Authorization": authHeader},
+                    dataType: 'json',
+                    success: function (data) {
+                        formEdit.innerHTML += `<h5>Entidades<h5>`
+                        $.each(data.entities, function (i, item) {
+                            if(data.entities[i].id !== 0){
+                                formEdit.innerHTML += `
+                                <input type="checkbox" class = "checkbox" " checked/>${item.entity.name}<br>
+                                `
+                            }
+                            else{
+                                formEdit.innerHTML += `
+                                <input type="checkbox" class = "checkbox"/>${item.entity.name}<br>
+                            `
+                            }
+                        })
+                    }
+                })
                 }
             formEdit.innerHTML += `
                 <input id="btn-Edit" class= "btn-Save" type="button" value="Actualizar">

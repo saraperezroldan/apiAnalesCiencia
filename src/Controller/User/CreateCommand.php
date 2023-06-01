@@ -39,9 +39,9 @@ class CreateCommand
      */
     public function __invoke(Request $request, Response $response): Response
     {
-        if (!$this->checkWriterScope($request)) { // 403
-            return Error::createResponse($response, StatusCode::STATUS_FORBIDDEN);
-        }
+//        if (!$this->checkWriterScope($request)) { // 403
+//            return Error::createResponse($response, StatusCode::STATUS_FORBIDDEN);
+//        }
 
         $req_data = $request->getParsedBody() ?? [];
 
